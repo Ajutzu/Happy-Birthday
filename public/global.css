@@ -1,0 +1,443 @@
+/* Import Poppins font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+:root {
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "DM Sans", sans-serif;
+
+  /* Normal Colors */
+  --color-dark: #444444;
+  --color-light: #ffffff;
+
+  /* Primary Colors */
+  --primary-darkest: #0d1a4e;
+  --primary-darker: #023e8a;
+  --primary-dark: #0077b6;
+  --primary-medium: #0096c7;
+  --primary-light: #00b4d8;
+
+  /* Secondary Colors */
+  --secondary-dark: #48cae4;
+  --secondary-medium: #90e0ef;
+  --secondary-light: #ade8f4;
+  --secondary-lighter: #caf0f8;
+
+  /* Gradient Colors */
+  --gradient-dark: linear-gradient(
+    90deg,
+    #0f1d55 0%,
+    #070f2e 41%,
+    #020616 100%
+  );
+  --gradient-light: linear-gradient(90deg, #bac4d8 0%, #bac4d8 100%);
+  --gradient-title: linear-gradient(to right, #444444, #ffffff, #444444);
+  --card-gradient-title: linear-gradient(to bottom, #444444, #ffffff, #444444);
+}
+
+body {
+  background: #020616;
+  font-family: var(--font-primary);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.book {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  perspective: 1500px;
+}
+
+.book-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #0F1D55, #0A153F, #070F2E, #020616);
+  transform-origin: left;
+  transition: transform 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.book.open .book-cover {
+  transform: rotateY(-180deg);
+}
+
+.book-page {
+  position: absolute; 
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  padding: 30px;
+  box-sizing: border-box;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
+}
+
+.book.open .book-page {
+  visibility: visible;
+  opacity: 1;
+}
+
+.left-page {
+  left: 0;
+  border-right: 2px solid #ddd;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  
+.right-page {
+  right: 0;
+}
+
+.employee-list {
+  margin-top: 20px;
+}
+
+.employee-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
+}
+
+.start-btn {
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: var(--primary-darkest);
+  color: var(--color-light);
+  color: white;
+  border: none;
+  border-radius: 10px 0px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: pulse 2s infinite;
+}
+
+.start-btn:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.05);
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 119, 182, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 119, 182, 0);
+  }
+}
+
+.close-btn {
+  padding: 10px 20px;
+  background-color: var(--primary-darkest);
+  color: white;
+  border: none;
+  border-radius: 10px 0px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.close-btn:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05);
+    animation: none;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.right-page h2 {
+  font-size: 36px;
+}
+
+.right-page p {
+  font-size: 24px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.message-list {
+  height: calc(100% - 80px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.message-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.sender-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.message-text {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* Custom scrollbar */
+.message-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .book {
+    width: 90%;
+    height: 80vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .book {
+    width: 100%;
+    height: 100vh;
+    perspective: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    z-index: 10;
+  }
+
+  .book.open .book-cover {
+    transform: translateX(-100%);
+  }
+
+  .book-page {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .left-page {
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .right-page {
+    /* No top positioning needed */
+  }
+
+  /* Remove the translateY transformation since we're using flex layout */
+  .book.open .right-page {
+    transform: none;
+  }
+
+  .message-list {
+    max-height: calc(50vh - 80px);
+  }
+
+  .message-item {
+    padding: 10px;
+  }
+}
+
+/* Add these styles for the candle */
+.candle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.candle {
+  position: relative;
+  width: 30px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.wax {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(to right, var(--primary-dark), #0077b6, var(--primary-medium));
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.flame {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 30px;
+  background: linear-gradient(to bottom, #ff6600, #ffcc00);
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 10px #ff9900, 0 0 20px #ffcc00;
+  animation: flicker 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  0% {
+    transform: translateX(-50%) scale(0.9, 1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-50%) scale(1.1, 0.9);
+    opacity: 1;
+  }
+}
+
+/* Add these styles for the microphone blowing interaction */
+.flame.listening {
+  animation: flicker-fast 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes flicker-fast {
+  0% {
+    transform: translateX(-50%) scale(0.9, 1.1);
+    opacity: 0.9;
+    height: 30px;
+  }
+  100% {
+    transform: translateX(-50%) scale(1.1, 0.9);
+    opacity: 1;
+    height: 35px;
+  }
+}
+
+.listening-text {
+  font-size: 20px;
+  color: white;
+  border: 1px solid var(--primary-dark);
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+.main-title {
+    color: var(--primary-darkest);
+}
+
+.gradient-title {
+    color: var(--color-dark);
+    letter-spacing: 1px;
+    animation: shine 2s infinite;
+    background: linear-gradient(
+      90deg,
+      var(--color-dark) 0%,
+      var(--color-light) 50%,
+      var(--color-dark) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+/* Add styles for birthday person */
+.birthday-person-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.birthday-person-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.birthday-message {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.birthday-message p {
+  font-size: 18px;
+  color: #444;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+/* Adjust right page for better spacing */
+.right-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Make sure the button stays at the bottom */
+.right-page .close-btn {
+  margin-top: auto;
+  align-self: center;
+}
